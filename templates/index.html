@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        nav {
+            background-color: #0056b3;
+            padding: 10px 20px;
+            color: white;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 0;
+        }
+        h2 {
+            color: #0056b3;
+        }
+        .upload-box {
+            margin-top: 20px;
+            width: 300px;
+            height: 300px;
+            border: 4px dashed #a50202;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .upload-box:hover {
+            background-color: #f0f8ff;
+        }
+        .upload-box::before {
+            content: '📁';
+            position:relative;
+            font-size: 4rem;
+            color: #0056b3;
+            transition: transform 0.3s ease-in-out;
+        }
+        .upload-box:hover::before {
+            transform: scale(1.1);
+        }
+        .predict-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #00df38;
+            color: white;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        .predict-button:hover {
+            background-color: transparent;
+            border-color: #007bff;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+    <div class="upload-container">
+        <h1 style="font-family: Georgia, 'Times New Roman', Times, serif; color: black;">Lane Prediction</h1>
+        <form action="/home" method="post" enctype="multipart/form-data" id="uploadForm">
+            <label for="video-upload" class="upload-box" id="uploadLabel">
+                Click or drop a video here
+                <input type="file" id="video-upload" name="video" accept="video/*" style="display: none;">
+            </label>
+            <button type="submit" class="predict-button">Predict</button>
+        </form>
+    </div>
+
+    <script>
+        function updateFilename() {
+            var input = document.getElementById('video-upload');
+            var label = document.getElementById('uploadLabel');
+            
+            label.textContent = input.files[0] ? '🎥 ' + input.files[0].name : 'Click or drop a video here';
+        }
+    </script>
+</body>
+</html>
